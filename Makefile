@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 18:46:41 by badam             #+#    #+#              #
-#    Updated: 2021/12/05 23:58:02 by badam            ###   ########.fr        #
+#    Updated: 2021/12/06 00:07:06 by bastien          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ COMMON_CFLAGS=-Wall -Wextra -Werror
 CFLAGS=$(COMMON_CFLAGS) $(INCLUDES)
 
 HEADERS= \
-	srcs/push_swap.h \
-	srcs/libs/gnl/get_next_line_bonus.h
+	srcs/push_swap.h
 SRC= \
 	srcs/utils.c \
 	srcs/list_utils.c \
