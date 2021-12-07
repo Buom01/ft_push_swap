@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/05 23:57:54 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/07 09:28:05 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		get_chunk_splitpoint(t_list *list, size_t len);
 int		get_midpoint(t_list *list);
 
 void	dump(t_list *a, t_list *b);
+int		ft_atoi_err(const char *str, bool *error);
 
 void	freeup(t_list **a, t_list **b);
 int		handle_error(t_list **a, t_list **b);

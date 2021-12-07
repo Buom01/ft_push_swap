@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/05 23:56:48 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/07 09:22:54 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,22 @@ void	form_chunks(t_list **a, t_list **b)
 		split_chunk(a, b, chunk_len);
 	if (ft_lstsize(*a) > 2)
 		form_chunks(a, b);
-	else if (ft_lstsize(*a) && !less(*a, (*a)->next))
+	else if (ft_lstsize(*a) == 2 && !less(*a, (*a)->next))
 		sa(a);
 }
 
 void	simple_sort(t_list **a, t_list **b)
 {
-	form_chunks(a, b);
-	sorts(a, b, ft_lstsize(*b));
+	if (ft_lstsize(*a) > 3)
+	{
+		form_chunks(a, b);
+		sorts(a, b, ft_lstsize(*b));
+	}
+	else if (!is_sorted(*a))
+	{
+		if (!less(*a, (*a)->next))
+			sa(a);
+		if (!is_sorted(*a))
+			rra(a);
+	}
 }
