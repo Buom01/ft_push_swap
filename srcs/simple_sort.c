@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/07 09:42:22 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/07 17:41:48 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	sorts(t_list **a, t_list **b, size_t len)
 		if (len == 2)
 		{
 			if (less(*b, (*b)->next))
-				sb(b);
+				sb(b, false);
 		}
 		else if (len > 2)
 		{
@@ -57,13 +57,13 @@ void	sorts(t_list **a, t_list **b, size_t len)
 			if (way_to_next > 0)
 			{
 				while (way_to_next-- > 0)
-					rb(b);
+					rb(b, false);
 			}
 			else if (way_to_next < 0)
 				while (way_to_next++ < 0)
-					rrb(b);
+					rrb(b, false);
 		}
-		pa(a, b);
+		pa(a, b, false);
 		--len;
 	}
 }
@@ -78,9 +78,9 @@ void	split_chunk(t_list **a, t_list **b, size_t len)
 	while (chunk_contains_more(splitpoint, *b, selection))
 	{
 		if (*((int *)(*b)->content) >= splitpoint)
-			pa(a, b);
+			pa(a, b, false);
 		else
-			rb(b);
+			rb(b, false);
 		--selection;
 	}
 }
@@ -99,17 +99,17 @@ void	form_chunks(t_list **a, t_list **b)
 		if (*((int *)(*a)->content) < splitpoint)
 		{
 			++chunk_len;
-			pb(b, a);
+			pb(b, a, false);
 		}
 		else
-			ra(a);
+			ra(a, false);
 	}
 	if (chunk_len > MAX_CHUNK_LEN)
 		split_chunk(a, b, chunk_len);
 	if (ft_lstsize(*a) > 2)
 		form_chunks(a, b);
 	else if (ft_lstsize(*a) == 2 && !less(*a, (*a)->next))
-		sa(a);
+		sa(a, false);
 }
 
 void	simple_sort(t_list **a, t_list **b)
@@ -122,8 +122,8 @@ void	simple_sort(t_list **a, t_list **b)
 	else if (!is_sorted(*a))
 	{
 		if (!less(*a, (*a)->next))
-			sa(a);
+			sa(a, false);
 		if (!is_sorted(*a))
-			rra(a);
+			rra(a, false);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 14:38:55 by badam             #+#    #+#             */
-/*   Updated: 2021/12/03 14:54:51 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/07 17:40:21 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,32 @@ static void	reverse_rotate(t_list **list)
 	elem->next = NULL;
 }
 
-void	rra(t_list **a)
+void	rra(t_list **a, bool silent)
 {
-	ft_putstr_fd("rra\n", 1);
+	if (!silent)
+		ft_putstr_fd("rra\n", 1);
 	reverse_rotate(a);
 }
 
-void	rrb(t_list **b)
+void	rrb(t_list **b, bool silent)
 {
-	ft_putstr_fd("rrb\n", 1);
+	if (!silent)
+		ft_putstr_fd("rrb\n", 1);
 	reverse_rotate(b);
 }
 
-void	rrr(t_list **a, t_list **b)
+void	rrr(t_list **a, t_list **b, bool silent)
 {
-	ft_putstr_fd("rrr\n", 1);
+	if (!silent)
+		ft_putstr_fd("rrr\n", 1);
 	reverse_rotate(a);
 	reverse_rotate(b);
 }
 
-void	auto_reverse_rotate(t_list **list, t_list **a, t_list **b)
+void	auto_reverse_rotate(t_list **list, t_list **a, t_list **b, bool silent)
 {
 	if (list == a)
-		rra(a);
+		rra(a, silent);
 	else
-		rrb(b);
+		rrb(b, silent);
 }
