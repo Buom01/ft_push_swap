@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/07 09:22:54 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/07 09:42:22 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,16 @@ void	split_chunk(t_list **a, t_list **b, size_t len)
 
 void	form_chunks(t_list **a, t_list **b)
 {
-	int		midpoint;
+	int		splitpoint;
 	size_t	chunk_len;
 
 	if (is_sorted(*a))
 		return ;
 	chunk_len = 0;
-	midpoint = get_midpoint(*a);
-	while (lst_contains_less(midpoint, *a))
+	splitpoint = get_splitpoint(*a);
+	while (lst_contains_less(splitpoint, *a))
 	{
-		if (*((int *)(*a)->content) < midpoint)
+		if (*((int *)(*a)->content) < splitpoint)
 		{
 			++chunk_len;
 			pb(b, a);
