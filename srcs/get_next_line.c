@@ -6,7 +6,7 @@
 /*   By: badam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:06:05 by badam             #+#    #+#             */
-/*   Updated: 2021/12/08 19:40:56 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/08 20:23:56 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	get_next_line(int fd, char **line)
 		return (eof);
 	prefill = (BUFFER_SIZE && *buffer != 0);
 	if (!prefill)
-		eof = read(fd, buffer, BUFFER_SIZE) > 0;
-	while (prefill || join_state)
+		eof = read(fd, buffer, BUFFER_SIZE);
+	while (prefill || (join_state && eof > 0))
 	{
 		join_state = joinline(line, buffer);
 		if (join_state == -1)

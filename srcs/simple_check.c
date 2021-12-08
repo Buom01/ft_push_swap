@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/08 18:46:54 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/08 20:24:18 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	check(t_list **a, t_list **b)
 	error = false;
 	while (!error && get_next_line(0, &line) > 0)
 	{
+		if (*line == '\n' && !*(line + 1))
+			break;
 		if (!exec_line(line, a, b))
 		{
 			error = true;
