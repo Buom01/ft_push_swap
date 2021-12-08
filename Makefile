@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 18:46:41 by badam             #+#    #+#              #
-#    Updated: 2021/12/07 17:45:08 by badam            ###   ########.fr        #
+#    Updated: 2021/12/08 18:02:56 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ SRC_BONUS= \
 	srcs/operation_push.c \
 	srcs/operation_rotate.c \
 	srcs/operation_reverse_rotate.c \
+	srcs/get_next_line.c \
+	srcs/get_next_line_utils.c \
 	srcs/simple_check.c
 OBJ_BONUS=$(SRC_BONUS:.c=.o)
 

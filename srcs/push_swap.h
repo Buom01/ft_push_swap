@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/07 17:39:51 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/08 18:15:11 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include "libft.h"
-
+# include "get_next_line.h"
 # define MAX_CHUNK_LEN	43
 
 void	sa(t_list **a, bool silent);

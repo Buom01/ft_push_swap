@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/07 17:41:48 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/08 19:04:56 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ void	simple_sort(t_list **a, t_list **b)
 			sa(a, false);
 		if (!is_sorted(*a))
 			rra(a, false);
+		if (!less(*a, (*a)->next))
+			sa(a, false);
 	}
 }
