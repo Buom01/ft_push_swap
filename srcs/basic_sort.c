@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:03:28 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 17:42:44 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 21:09:33 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void	sort_triplet(t_list **a)
 {
-	if (ft_lstsize(*a) < 3)
-	{
-		if (!is_sorted(*a))
-			sa(a, false);
-	}
-	else
+	if (ft_lstsize(*a) >= 3)
 	{
 		if (less((*a)->next, *a))
 		{
@@ -32,15 +27,14 @@ void	sort_triplet(t_list **a)
 					sa(a, false);
 			}
 		}
+		else if (less((*a)->next->next, *a))
+			rra(a, false);
 		else
 		{
-			if (less((*a)->next->next, *a))
-				rra(a, false);
-			else
-			{
-				rra(a, false);
-				sa(a, false);
-			}
+			rra(a, false);
+			sa(a, false);
 		}
 	}
+	else if (!is_sorted(*a))
+		sa(a, false);
 }
