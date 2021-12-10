@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/08 18:15:11 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 16:12:26 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		ft_atoi_err(const char *str, bool *error);
 
 void	freeup(t_list **a, t_list **b);
 int		handle_error(t_list **a, t_list **b);
+void	sort_triplet(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
 void	check(t_list **a, t_list **b);
 

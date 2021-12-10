@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/08 20:57:20 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 15:34:31 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	exec_line(char *line, t_list **a, t_list **b)
 {
-	if (!ft_strcmp(line, "SA"))
+	if (!ft_strcmp(line, "sa"))
 		sa(a, true);
 	else if (!ft_strcmp(line, "sb"))
 		sb(b, true);

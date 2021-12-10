@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/08 19:04:56 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 17:59:18 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ void	form_chunks(t_list **a, t_list **b)
 	}
 	if (chunk_len > MAX_CHUNK_LEN)
 		split_chunk(a, b, chunk_len);
-	if (ft_lstsize(*a) > 2)
+	if (ft_lstsize(*a) > 3)
 		form_chunks(a, b);
-	else if (ft_lstsize(*a) == 2 && !less(*a, (*a)->next))
-		sa(a, false);
+	else if (!is_sorted(*a))
+		sort_triplet(a);
 }
 
 void	simple_sort(t_list **a, t_list **b)
@@ -120,12 +120,5 @@ void	simple_sort(t_list **a, t_list **b)
 		sorts(a, b, ft_lstsize(*b));
 	}
 	else if (!is_sorted(*a))
-	{
-		if (!less(*a, (*a)->next))
-			sa(a, false);
-		if (!is_sorted(*a))
-			rra(a, false);
-		if (!less(*a, (*a)->next))
-			sa(a, false);
-	}
+		sort_triplet(a);
 }
