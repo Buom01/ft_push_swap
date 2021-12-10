@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:28 by badam             #+#    #+#             */
-/*   Updated: 2021/12/07 17:34:40 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 23:44:17 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ static bool	get_next_number(char ***argv, int *argc, bool *error)
 
 int	main(int argc, char **argv)
 {
-	bool	error;
-	t_list	*a;
-	t_list	*b;
+	t_config	cfg;
+	t_list		*a;
+	t_list		*b;
 
+	ft_memset(&cfg, 0, sizeof(cfg));
 	a = NULL;
 	b = NULL;
-	error = false;
 	--argc;
 	++argv;
 	if (!argc)
 		return (0);
-	get_first_number(&argv, &error);
-	while (!error && argc)
+	get_first_number(&argv, &cfg.error);
+	while (!cfg.error && argc)
 	{
-		new_appended_elem(ft_atoi_err(*argv, &error), &a, &error);
-		get_next_number(&argv, &argc, &error);
+		new_appended_elem(ft_atoi_err(*argv, &cfg.error), &a, &cfg.error);
+		get_next_number(&argv, &argc, &cfg.error);
 	}
-	if (error)
+	if (cfg.error)
 		return (handle_error(&a, &b));
-	simple_sort(&a, &b);
+	simple_sort(&a, &b, &cfg);
 	freeup(&a, &b);
 	return (0);
 }

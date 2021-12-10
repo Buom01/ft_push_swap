@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 17:59:18 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 23:40:49 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ ssize_t	shortest_way_to(t_list *list, int value)
 		return (-from_end);
 }
 
-void	sorts(t_list **a, t_list **b, size_t len)
+void	sorts(t_list **a, t_list **b, size_t len, t_config *cfg)
 {
 	ssize_t	way_to_next;
 
@@ -49,7 +49,7 @@ void	sorts(t_list **a, t_list **b, size_t len)
 		if (len == 2)
 		{
 			if (less(*b, (*b)->next))
-				sb(b, false);
+				sb(b, cfg);
 		}
 		else if (len > 2)
 		{
@@ -57,35 +57,18 @@ void	sorts(t_list **a, t_list **b, size_t len)
 			if (way_to_next > 0)
 			{
 				while (way_to_next-- > 0)
-					rb(b, false);
+					rb(b, cfg);
 			}
 			else if (way_to_next < 0)
 				while (way_to_next++ < 0)
-					rrb(b, false);
+					rrb(b, cfg);
 		}
-		pa(a, b, false);
+		pa(a, b, cfg);
 		--len;
 	}
 }
 
-void	split_chunk(t_list **a, t_list **b, size_t len)
-{
-	int	splitpoint;
-	int	selection;
-
-	splitpoint = get_chunk_splitpoint(*b, len);
-	selection = len;
-	while (chunk_contains_more(splitpoint, *b, selection))
-	{
-		if (*((int *)(*b)->content) >= splitpoint)
-			pa(a, b, false);
-		else
-			rb(b, false);
-		--selection;
-	}
-}
-
-void	form_chunks(t_list **a, t_list **b)
+void	form_chunks(t_list **a, t_list **b, t_config *cfg)
 {
 	int		splitpoint;
 	size_t	chunk_len;
@@ -99,26 +82,24 @@ void	form_chunks(t_list **a, t_list **b)
 		if (*((int *)(*a)->content) < splitpoint)
 		{
 			++chunk_len;
-			pb(b, a, false);
+			pb(b, a, cfg);
 		}
 		else
-			ra(a, false);
+			ra(a, cfg);
 	}
-	if (chunk_len > MAX_CHUNK_LEN)
-		split_chunk(a, b, chunk_len);
 	if (ft_lstsize(*a) > 3)
-		form_chunks(a, b);
+		form_chunks(a, b, cfg);
 	else if (!is_sorted(*a))
-		sort_triplet(a);
+		sort_triplet(a, cfg);
 }
 
-void	simple_sort(t_list **a, t_list **b)
+void	simple_sort(t_list **a, t_list **b, t_config *cfg)
 {
 	if (ft_lstsize(*a) > 3)
 	{
-		form_chunks(a, b);
-		sorts(a, b, ft_lstsize(*b));
+		form_chunks(a, b, cfg);
+		sorts(a, b, ft_lstsize(*b), cfg);
 	}
 	else if (!is_sorted(*a))
-		sort_triplet(a);
+		sort_triplet(a, cfg);
 }

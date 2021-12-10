@@ -6,59 +6,57 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 15:34:31 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/10 23:51:40 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	exec_line(char *line, t_list **a, t_list **b)
+static bool	exec_line(char *line, t_list **a, t_list **b, t_config *cfg)
 {
 	if (!ft_strcmp(line, "sa"))
-		sa(a, true);
+		sa(a, cfg);
 	else if (!ft_strcmp(line, "sb"))
-		sb(b, true);
+		sb(b, cfg);
 	else if (!ft_strcmp(line, "ss"))
-		ss(a, b, true);
+		ss(a, b, cfg);
 	else if (!ft_strcmp(line, "pa"))
-		pa(a, b, true);
+		pa(a, b, cfg);
 	else if (!ft_strcmp(line, "pb"))
-		pb(b, a, true);
+		pb(b, a, cfg);
 	else if (!ft_strcmp(line, "ra"))
-		ra(a, true);
+		ra(a, cfg);
 	else if (!ft_strcmp(line, "rb"))
-		rb(b, true);
+		rb(b, cfg);
 	else if (!ft_strcmp(line, "rr"))
-		rr(a, b, true);
+		rr(a, b, cfg);
 	else if (!ft_strcmp(line, "rra"))
-		rra(a, true);
+		rra(a, cfg);
 	else if (!ft_strcmp(line, "rrb"))
-		rrb(b, true);
+		rrb(b, cfg);
 	else if (!ft_strcmp(line, "rrr"))
-		rrr(a, b, true);
+		rrr(a, b, cfg);
 	else
 		return (false);
-	return (true);
+	return (cfg);
 }
 
-void	check(t_list **a, t_list **b)
+void	check(t_list **a, t_list **b, t_config *cfg)
 {
 	char	*line;
-	bool	error;
 
-	error = false;
-	while (!error && get_next_line(0, &line) > 0)
+	while (!cfg->error && get_next_line(0, &line) > 0)
 	{
 		if (*line == '\n' && !*(line + 1))
 			break ;
-		if (!exec_line(line, a, b))
+		if (!exec_line(line, a, b, cfg))
 		{
-			error = true;
+			cfg->error = true;
 			handle_error(a, b);
 		}
 		free(line);
 	}
-	if (!error)
+	if (!cfg->error)
 	{
 		if (ft_lstsize(*b) == 0 && is_sorted(*a))
 			ft_putstr_fd("OK\n", 1);
