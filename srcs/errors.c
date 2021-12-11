@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 16:15:15 by bastien           #+#    #+#             */
-/*   Updated: 2021/12/07 17:34:35 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/11 23:16:37 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	freeup(t_list **a, t_list **b)
 int	handle_error(t_list **a, t_list **b)
 {
 	freeup(a, b);
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	return (1);
 }
