@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 21:10:43 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 18:59:34 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 22:44:46 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ int	get_max(t_list *list)
 
 static int	chunksize_for_listlen(int len)
 {
-	return (len / 5 + 3);
+	return (len / 9 + 9);
 }
 
 int	get_splitpoint(t_list *list, t_config *cfg)
 {
-	int	chunk_size	= chunksize_for_listlen(ft_lstsize(list));
+	int	chunk_size;
 
+	chunk_size = chunksize_for_listlen(ft_lstsize(list));
 	if (ft_lstsize(list) - 3 <= chunk_size)
 		chunk_size = ft_lstsize(list) - 3;
 	while (chunk_size)

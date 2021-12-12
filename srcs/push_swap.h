@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 18:47:39 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 21:22:02 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include "libft.h"
 # include "get_next_line.h"
-# define CHUNK_LEN	22
 
 typedef struct s_config
 {

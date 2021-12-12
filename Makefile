@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 18:46:41 by badam             #+#    #+#              #
-#    Updated: 2021/12/12 15:22:22 by badam            ###   ########.fr        #
+#    Updated: 2021/12/12 22:59:07 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC=clang
 INCLUDES=-Isrcs -Ilibft
 DEPS=libft/libft.a
 COMMON_CFLAGS=-Wall -Wextra -Werror
-CFLAGS=$(COMMON_CFLAGS) -g3 $(INCLUDES)
+CFLAGS=$(COMMON_CFLAGS) $(INCLUDES)
 
 HEADERS= \
 	srcs/push_swap.h
