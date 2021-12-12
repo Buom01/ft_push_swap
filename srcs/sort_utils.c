@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 21:10:43 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 22:44:46 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/13 00:02:03 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,21 @@ int	get_max(t_list *list)
 
 static int	chunksize_for_listlen(int len)
 {
-	return (len / 9 + 9);
+	return (len / 9 + 10);
 }
 
-int	get_splitpoint(t_list *list, t_config *cfg)
+int	get_splitpoint(t_config *cfg)
 {
-	int	chunk_size;
+	int		chunk_size;
+	ssize_t	non_chunked;
 
-	chunk_size = chunksize_for_listlen(ft_lstsize(list));
-	if (ft_lstsize(list) - 3 <= chunk_size)
-		chunk_size = ft_lstsize(list) - 3;
+	non_chunked = cfg->total_len - cfg->chunked;
+	chunk_size = chunksize_for_listlen(non_chunked);
+	if (non_chunked - 3 <= chunk_size)
+		chunk_size = non_chunked - 3;
 	while (chunk_size)
 	{
 		cfg->nonchunked_cur = cfg->nonchunked_cur->next;
-		++cfg->chunked;
 		--chunk_size;
 	}
 	return (*((int *)cfg->nonchunked_cur->content));

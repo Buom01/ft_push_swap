@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 00:22:52 by badam             #+#    #+#             */
-/*   Updated: 2021/12/11 00:12:24 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 23:21:17 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	swap(t_list **list)
 {
 	t_list	*tmp_place;
 
-	if (ft_lstsize(*list) < 2)
+	if (is_empty(*list))
 		return ;
 	tmp_place = *list;
 	*list = (*list)->next;

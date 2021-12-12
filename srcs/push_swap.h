@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 21:22:02 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/13 00:02:03 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdbool.h>
-# include <stdio.h>
 # include "libft.h"
 # include "get_next_line.h"
 
@@ -23,6 +22,7 @@ typedef struct s_config
 	bool	error;
 	bool	silent;
 	t_list	*sorted;
+	size_t	total_len;
 	size_t	operations;
 	size_t	chunked;
 	t_list	*nonchunked_cur;
@@ -54,7 +54,7 @@ void	new_appended_elem(int value, t_list **list, bool *error);
 
 bool	is_sorted(t_list *a);
 int		get_max(t_list *list);
-int		get_splitpoint(t_list *list, t_config *cfg);
+int		get_splitpoint(t_config *cfg);
 bool	is_empty(t_list *lst);
 
 void	dump(t_list *a, t_list *b);

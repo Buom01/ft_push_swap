@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 14:24:33 by badam             #+#    #+#             */
-/*   Updated: 2021/12/11 00:13:04 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 23:21:54 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	push(t_list **to, t_list **from)
 {
 	t_list	*elem;
 
-	if (ft_lstsize(*from) < 1)
+	if (!*from)
 		return ;
 	elem = *from;
 	*from = (*from)->next;
