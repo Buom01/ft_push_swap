@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:28 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 23:52:32 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 07:49:20 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	get_first_number(char ***argv, bool *error)
 {
 	while (***argv && ft_isspace(***argv))
 		++**argv;
-	if (!(ft_isdigit(***argv) || ***argv == '-'))
+	if (!(ft_isdigit(***argv) || ***argv == '-' || ***argv == '+'))
 		*error = true;
 	return (*error);
 }
@@ -25,7 +25,7 @@ static bool	get_next_number(char ***argv, int *argc, bool *error)
 {
 	if (*error)
 		return (error);
-	while (ft_isdigit(***argv) || ***argv == '-')
+	while (ft_isdigit(***argv) || ***argv == '-' || ***argv == '+')
 		++**argv;
 	while (ft_isspace(***argv))
 		++**argv;
