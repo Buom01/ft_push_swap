@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 23:51:40 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 08:07:02 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	check(t_list **a, t_list **b, t_config *cfg)
 		}
 		free(line);
 	}
+	if (line)
+		free(line);
 	if (!cfg->error)
 	{
 		if (ft_lstsize(*b) == 0 && is_sorted(*a))
