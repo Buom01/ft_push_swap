@@ -6,7 +6,7 @@
 #    By: badam <badam@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/10 18:46:41 by badam             #+#    #+#              #
-#    Updated: 2021/12/10 16:13:40 by badam            ###   ########.fr        #
+#    Updated: 2021/12/12 15:22:22 by badam            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC=clang
 INCLUDES=-Isrcs -Ilibft
 DEPS=libft/libft.a
 COMMON_CFLAGS=-Wall -Wextra -Werror
-CFLAGS=$(COMMON_CFLAGS) $(INCLUDES)
+CFLAGS=$(COMMON_CFLAGS) -g3 $(INCLUDES)
 
 HEADERS= \
 	srcs/push_swap.h
@@ -30,6 +30,7 @@ SRC= \
 	srcs/operation_push.c \
 	srcs/operation_rotate.c \
 	srcs/operation_reverse_rotate.c \
+	srcs/common.c \
 	srcs/basic_sort.c \
 	srcs/simple_sort.c
 OBJ=$(SRC:.c=.o)
@@ -46,6 +47,7 @@ SRC_BONUS= \
 	srcs/operation_reverse_rotate.c \
 	srcs/get_next_line.c \
 	srcs/get_next_line_utils.c \
+	srcs/common.c \
 	srcs/simple_check.c
 OBJ_BONUS=$(SRC_BONUS:.c=.o)
 

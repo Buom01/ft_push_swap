@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/11 00:22:05 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 15:27:48 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 typedef struct s_config
 {
 	bool	error;
-	size_t	operations;
 	bool	silent;
+	t_list	*sorted;
+	size_t	operations;
 }	t_config;
 
 void	sa(t_list **a, t_config *cfg);
@@ -59,8 +60,11 @@ bool	is_empty(t_list *lst);
 void	dump(t_list *a, t_list *b);
 int		ft_atoi_err(const char *str, bool *error);
 
-void	freeup(t_list **a, t_list **b);
-int		handle_error(t_list **a, t_list **b);
+bool	get_first_number(char ***argv, bool *error);
+bool	get_next_number(char ***argv, int *argc, bool *error);
+
+void	freeup(t_list **a, t_list **b, t_config *cfg);
+int		handle_error(t_list **a, t_list **b, t_config *cfg);
 void	sort_triplet(t_list **lst, t_config *cfg);
 void	simple_sort(t_list **a, t_list **b, t_config *cfg);
 void	check(t_list **a, t_list **b, t_config *cfg);

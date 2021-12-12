@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 08:07:02 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 15:31:20 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check(t_list **a, t_list **b, t_config *cfg)
 		if (!exec_line(line, a, b, cfg))
 		{
 			cfg->error = true;
-			handle_error(a, b);
+			handle_error(a, b, cfg);
 		}
 		free(line);
 	}
