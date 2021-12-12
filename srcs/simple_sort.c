@@ -6,11 +6,38 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 01:16:46 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 23:40:49 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 18:35:51 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	pre_sort(t_config *cfg)
+{
+	bool	sorted;
+	t_list	**cursor;
+	t_list	*tmp;
+
+	sorted = false;
+	while (!sorted)
+	{
+		sorted = true;
+		cursor = &(cfg->sorted);
+		while (*cursor && (*cursor)->next)
+		{
+			if (!less(*cursor, (*cursor)->next))
+			{
+				sorted = false;
+				tmp = *cursor;
+				*cursor = (*cursor)->next;
+				tmp->next = (*cursor)->next;
+				(*cursor)->next = tmp;
+			}
+			cursor = &((*cursor)->next);
+		}
+	}
+	cfg->nonchunked_cur = cfg->sorted;
+}
 
 ssize_t	shortest_way_to(t_list *list, int value)
 {
@@ -76,7 +103,7 @@ void	form_chunks(t_list **a, t_list **b, t_config *cfg)
 	if (is_sorted(*a))
 		return ;
 	chunk_len = 0;
-	splitpoint = get_splitpoint(*a);
+	splitpoint = get_splitpoint(*a, cfg);
 	while (lst_contains_less(splitpoint, *a))
 	{
 		if (*((int *)(*a)->content) < splitpoint)
@@ -95,6 +122,7 @@ void	form_chunks(t_list **a, t_list **b, t_config *cfg)
 
 void	simple_sort(t_list **a, t_list **b, t_config *cfg)
 {
+	pre_sort(cfg);
 	if (ft_lstsize(*a) > 3)
 	{
 		form_chunks(a, b, cfg);

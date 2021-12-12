@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 21:10:43 by badam             #+#    #+#             */
-/*   Updated: 2021/12/10 23:28:01 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 18:59:34 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,24 @@ int	get_max(t_list *list)
 	return (max);
 }
 
-int	get_chunk_splitpoint(t_list *list, size_t len)
+static int	chunksize_for_listlen(int len)
 {
-	int	min;
-	int	max;
-
-	min = *((int *)list->content);
-	max = *((int *)list->content);
-	list = list->next;
-	while (--len && list)
-	{
-		if (*((int *)list->content) > max)
-			max = *((int *)list->content);
-		if (*((int *)list->content) < min)
-			min = *((int *)list->content);
-		list = list->next;
-	}
-	if ((max - min + 1) / 2 > CHUNK_LEN)
-		return (min + CHUNK_LEN);
-	else
-		return (min + ((max - min + 1) / 2));
+	return (len / 5 + 3);
 }
 
-int	get_splitpoint(t_list *list)
+int	get_splitpoint(t_list *list, t_config *cfg)
 {
-	int	min;
-	int	max;
+	int	chunk_size	= chunksize_for_listlen(ft_lstsize(list));
 
-	min = *((int *)list->content);
-	max = *((int *)list->content);
-	list = list->next;
-	while (list)
+	if (ft_lstsize(list) - 3 <= chunk_size)
+		chunk_size = ft_lstsize(list) - 3;
+	while (chunk_size)
 	{
-		if (*((int *)list->content) > max)
-			max = *((int *)list->content);
-		if (*((int *)list->content) < min)
-			min = *((int *)list->content);
-		list = list->next;
+		cfg->nonchunked_cur = cfg->nonchunked_cur->next;
+		++cfg->chunked;
+		--chunk_size;
 	}
-	if ((max - min + 1) / 2 > CHUNK_LEN)
-		return (min + CHUNK_LEN);
-	else
-		return (min + ((max - min + 1) / 2));
+	return (*((int *)cfg->nonchunked_cur->content));
 }
 
 bool	is_empty(t_list *lst)

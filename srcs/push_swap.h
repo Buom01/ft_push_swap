@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:57:22 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 15:27:48 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/12 18:47:39 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include "libft.h"
 # include "get_next_line.h"
-# define CHUNK_LEN	43
+# define CHUNK_LEN	22
 
 typedef struct s_config
 {
@@ -25,6 +25,8 @@ typedef struct s_config
 	bool	silent;
 	t_list	*sorted;
 	size_t	operations;
+	size_t	chunked;
+	t_list	*nonchunked_cur;
 }	t_config;
 
 void	sa(t_list **a, t_config *cfg);
@@ -53,8 +55,7 @@ void	new_appended_elem(int value, t_list **list, bool *error);
 
 bool	is_sorted(t_list *a);
 int		get_max(t_list *list);
-int		get_chunk_splitpoint(t_list *list, size_t len);
-int		get_splitpoint(t_list *list);
+int		get_splitpoint(t_list *list, t_config *cfg);
 bool	is_empty(t_list *lst);
 
 void	dump(t_list *a, t_list *b);
