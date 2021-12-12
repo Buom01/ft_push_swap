@@ -6,7 +6,7 @@
 /*   By: badam <badam@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:47:07 by badam             #+#    #+#             */
-/*   Updated: 2021/12/12 15:31:20 by badam            ###   ########.fr       */
+/*   Updated: 2021/12/13 00:46:22 by badam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ static bool	exec_line(char *line, t_list **a, t_list **b, t_config *cfg)
 void	check(t_list **a, t_list **b, t_config *cfg)
 {
 	char	*line;
+	bool	eof;
 
-	while (!cfg->error && get_next_line(0, &line) > 0)
+	eof = false;
+	while (!cfg->error && !eof && get_next_line(0, &line) >= 0)
 	{
-		if (*line == '\n' && !*(line + 1))
-			break ;
-		if (!exec_line(line, a, b, cfg))
+		eof = !line || !*line;
+		if (!eof && !exec_line(line, a, b, cfg))
 		{
 			cfg->error = true;
 			handle_error(a, b, cfg);
 		}
-		free(line);
+		if (line)
+			free(line);
 	}
-	if (line)
-		free(line);
 	if (!cfg->error)
 	{
 		if (ft_lstsize(*b) == 0 && is_sorted(*a))
